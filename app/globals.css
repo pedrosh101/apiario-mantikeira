@@ -5,7 +5,21 @@
   --foreground: #171717;
 }
 
+
+body {
+  @apply bg-(--color-clr2) text-(--color-clr1);
+  font-feature-settings:
+    "rlig" 1,
+    "calt" 1;
+}
+.text-balance {
+  text-wrap: balance;
+}
 @theme inline {
+  --color-clr1: #006c55;
+  --color-clr2: #fdfae7;
+  --color-clr3: #e79aa2;
+  --color-clr4: #ffc33f;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -16,6 +30,10 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --color-clr1: #006c55;
+    --color-clr2: #fdfae7;
+    --color-clr3: #e79aa2;
+    --color-clr4: #ffc33f;
   }
 }
 
