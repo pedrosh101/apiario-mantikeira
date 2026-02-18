@@ -1,17 +1,25 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useRef } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, EffectFade } from 'swiper/modules';
-import { motion, useInView } from 'framer-motion';
-import { Menu, X, Phone, Mail, MapPin, Instagram, ArrowRight, MoveRight } from 'lucide-react';
-import Lenis from 'lenis'
+import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, EffectFade } from "swiper/modules";
+import { motion, useInView } from "framer-motion";
+import {
+  Menu,
+  X,
+  Phone,
+  Mail,
+  MapPin,
+  Instagram,
+  ArrowRight,
+  MoveRight,
+} from "lucide-react";
+import Lenis from "lenis";
 
-
-import 'swiper/css';
-import 'swiper/css/effect-fade';
+import "swiper/css";
+import "swiper/css/effect-fade";
 
 export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -41,39 +49,39 @@ export default function HomePage() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navItems = [
-    { name: 'Página Inicial', href: '/' },
-    { name: 'Quem Somos', href: '/quem-somos' },
-    { name: 'Produtos', href: '/produtos' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Contato', href: '/contato' },
+    { name: "Página Inicial", href: "/" },
+    { name: "Quem Somos", href: "/quem-somos" },
+    { name: "Produtos", href: "/produtos" },
+    { name: "Blog", href: "/blog" },
+    { name: "Contato", href: "/contato" },
   ];
 
   const slides = [
     {
-      title: 'Mel Artesanal',
-      subtitle: 'Da Serra da Mantiqueira',
-      description: 'Produzido com amor e consciência pela natureza',
-      cta: 'Descobrir',
-      ctaLink: '/produtos',
+      title: "Mel Artesanal",
+      subtitle: "Da Serra da Mantiqueira",
+      description: "Produzido com amor e consciência pela natureza",
+      cta: "Descobrir",
+      ctaLink: "/produtos",
     },
     {
-      title: 'Apicultura Consciente',
-      subtitle: 'Manejo Sustentável',
-      description: 'Respeitando o ciclo natural das abelhas',
-      cta: 'Nossa História',
-      ctaLink: '/quem-somos',
+      title: "Apicultura Consciente",
+      subtitle: "Manejo Sustentável",
+      description: "Respeitando o ciclo natural das abelhas",
+      cta: "Nossa História",
+      ctaLink: "/quem-somos",
     },
     {
-      title: 'Pureza em Cada Gota',
-      subtitle: '100% Natural & Orgânico',
-      description: 'Qualidade garantida desde a colmeia até você',
-      cta: 'Explorar',
-      ctaLink: '/blog',
+      title: "Pureza em Cada Gota",
+      subtitle: "100% Natural & Orgânico",
+      description: "Qualidade garantida desde a colmeia até você",
+      cta: "Explorar",
+      ctaLink: "/blog",
     },
   ];
 
@@ -83,11 +91,9 @@ export default function HomePage() {
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? 'bg-clr2/80 backdrop-blur-xl shadow-sm'
-            : 'bg-transparent'
+          scrolled ? "bg-clr2/60 backdrop-blur-xl shadow-sm" : "bg-transparent"
         }`}
       >
         <div className="max-w-450 mx-auto px-6 lg:px-12 py-4">
@@ -118,10 +124,12 @@ export default function HomePage() {
                 >
                   <Link
                     href={item.href}
-                    className="relative text-clr1 hover:text-clr3 font-medium transition-colors duration-300 text-sm tracking-wide uppercase group"
+                    className={`relative font-normal transition-colors duration-300 text-sm tracking-wide uppercase ${
+                      scrolled ? "text-clr1" : "text-white"
+                    }`}
                   >
                     {item.name}
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-clr3 transition-all duration-300 group-hover:w-full" />
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-clr1 transition-all duration-300 group-hover:w-full" />
                   </Link>
                 </motion.div>
               ))}
@@ -142,7 +150,11 @@ export default function HomePage() {
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="lg:hidden p-2 rounded-md text-clr1 relative z-50"
             >
-              {mobileMenuOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
+              {mobileMenuOpen ? (
+                <X className="h-7 w-7" />
+              ) : (
+                <Menu className="h-7 w-7" />
+              )}
             </motion.button>
           </div>
         </div>
@@ -150,7 +162,7 @@ export default function HomePage() {
         {mobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             className="lg:hidden bg-clr2 border-t border-clr1/10"
           >
@@ -193,7 +205,7 @@ export default function HomePage() {
           {slides.map((slide, index) => (
             <SwiperSlide key={index} className="relative">
               <div className="absolute inset-0 bg-linear-to-br from-clr1 via-clr1/95 to-clr1/85" />
-              
+
               <div className="absolute inset-0 opacity-5">
                 <motion.div
                   animate={{
@@ -203,7 +215,7 @@ export default function HomePage() {
                   transition={{
                     duration: 20,
                     repeat: Infinity,
-                    ease: 'linear',
+                    ease: "linear",
                   }}
                   className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-clr4"
                 />
@@ -215,7 +227,7 @@ export default function HomePage() {
                   transition={{
                     duration: 25,
                     repeat: Infinity,
-                    ease: 'linear',
+                    ease: "linear",
                   }}
                   className="absolute bottom-1/4 left-1/4 w-80 h-80 rounded-full bg-clr3"
                 />
@@ -277,7 +289,11 @@ export default function HomePage() {
               >
                 <motion.div
                   animate={{ rotate: 360 }}
-                  transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
+                  transition={{
+                    duration: 30,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
                 >
                   <Image
                     src={`/images/icone${(index % 8) + 1}.png`}
@@ -290,28 +306,6 @@ export default function HomePage() {
             </SwiperSlide>
           ))}
         </Swiper>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2 }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="flex flex-col items-center gap-2"
-          >
-            <span className="text-clr2/60 text-xs uppercase tracking-widest">Scroll</span>
-            <div className="w-0.5 h-12 bg-clr2/30 relative overflow-hidden">
-              <motion.div
-                animate={{ y: ['-100%', '100%'] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="w-full h-1/2 bg-clr2"
-              />
-            </div>
-          </motion.div>
-        </motion.div>
       </div>
 
       <main>
@@ -328,17 +322,17 @@ export default function HomePage() {
 
 function FeaturesSection() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const features = [
-    { icon: 1, title: '100% Natural', desc: 'Sem aditivos' },
-    { icon: 2, title: 'Orgânico', desc: 'Certificado' },
-    { icon: 3, title: 'Artesanal', desc: 'Feito à mão' },
-    { icon: 4, title: 'Rastreável', desc: 'Da colmeia à mesa' },
-    { icon: 5, title: 'Sustentável', desc: 'Manejo consciente' },
-    { icon: 6, title: 'Local', desc: 'Serra da Mantiqueira' },
-    { icon: 7, title: 'Puro', desc: 'Sem misturas' },
-    { icon: 8, title: 'Premium', desc: 'Qualidade superior' },
+    { icon: 1, title: "100% Natural", desc: "Sem aditivos" },
+    { icon: 2, title: "Orgânico", desc: "Certificado" },
+    { icon: 3, title: "Artesanal", desc: "Feito à mão" },
+    { icon: 4, title: "Rastreável", desc: "Da colmeia à mesa" },
+    { icon: 5, title: "Sustentável", desc: "Manejo consciente" },
+    { icon: 6, title: "Local", desc: "Serra da Mantiqueira" },
+    { icon: 7, title: "Puro", desc: "Sem misturas" },
+    { icon: 8, title: "Premium", desc: "Qualidade superior" },
   ];
 
   return (
@@ -358,14 +352,16 @@ function FeaturesSection() {
             Nossos Diferenciais
           </span>
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-clr1 mb-6 tracking-tight">
-            Por Que Escolher<br />Nosso Mel?
+            Por Que Escolher
+            <br />
+            Nosso Mel?
           </h2>
           <p className="text-xl text-clr1/60 max-w-2xl mx-auto font-light">
             Compromisso com a qualidade, sustentabilidade e amor pelas abelhas
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-12">
           {features.map((item, idx) => (
             <motion.div
               key={idx}
@@ -380,17 +376,15 @@ function FeaturesSection() {
                   <Image
                     src={`/images/icone${item.icon}.png`}
                     alt={item.title}
-                    width={80}
-                    height={80}
-                    className="w-20 h-20 object-contain"
+                    width={1480}
+                    height={1480}
+                    className="w-54 h-54 object-contain"
                   />
                 </div>
                 <h3 className="text-xl font-bold text-clr1 mb-2">
                   {item.title}
                 </h3>
-                <p className="text-sm text-clr1/60">
-                  {item.desc}
-                </p>
+                <p className="text-sm text-clr1/60">{item.desc}</p>
               </div>
             </motion.div>
           ))}
@@ -402,14 +396,14 @@ function FeaturesSection() {
 
 function AboutSection() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
     <section ref={ref} className="py-32 bg-clr1 relative overflow-hidden">
       <div className="absolute inset-0 opacity-10">
         <motion.div
           animate={{ rotate: 360 }}
-          transition={{ duration: 50, repeat: Infinity, ease: 'linear' }}
+          transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-200 rounded-full border-2 border-clr4"
         />
       </div>
@@ -425,19 +419,24 @@ function AboutSection() {
               Nossa Missão
             </span>
             <h2 className="text-5xl md:text-6xl font-bold text-clr2 mb-8 leading-tight">
-              Tem Amor em<br />Cada Gota 🍯
+              Tem Amor em
+              <br />
+              Cada Gota 🍯
             </h2>
             <div className="space-y-6 text-lg text-clr2/80 leading-relaxed font-light">
               <p>
-                Somos apicultores e meliponicultores apaixonados pelo mundo das 
-                abelhas. Nosso trabalho vai além da produção de mel - é um 
-                compromisso com a preservação desses seres fundamentais para 
-                o nosso ecossistema.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+                sodales nulla vitae ligula pulvinar, eget sodales lacus
+                pharetra. Aenean porttitor tortor quam, mollis eleifend eros
+                viverra in. In eu eros urna. Nunc ex sem, varius sit amet odio
+                quis, ultrices venenatis tortor. Nullam vitae turpis et purus
+                porttitor semper. Fusce scelerisque, nulla quis maximus
+                pulvinar, odio tortor mollis leo, et facilisis ex justo quis
+                tellus.
               </p>
               <p>
-                Cada produto é resultado de manejo consciente, respeito à natureza 
-                e dedicação à qualidade. Do apiário na Serra da Mantiqueira até 
-                sua casa, garantimos pureza e sabor incomparáveis.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+                sodales nulla vitae ligula pulvinar.
               </p>
             </div>
             <motion.div
@@ -469,17 +468,11 @@ function AboutSection() {
                   animate={isInView ? { opacity: 1, scale: 1 } : {}}
                   transition={{ duration: 0.6, delay: idx * 0.2 }}
                   whileHover={{ scale: 1.1, rotate: 5 }}
-                  className={`aspect-square rounded-3xl bg-clr4/10 backdrop-blur-sm p-8 flex items-center justify-center ${
-                    idx % 2 === 0 ? 'mt-8' : ''
+                  className={`aspect-square rounded-3xl bg-clr4/40 backdrop-blur-sm p-8 flex items-center justify-center ${
+                    idx % 2 === 0 ? "mt-8" : ""
                   }`}
                 >
-                  <Image
-                    src={`/images/icone${num}.png`}
-                    alt=""
-                    width={120}
-                    height={120}
-                    className="w-full h-auto object-contain opacity-60"
-                  />
+                  <Image src={`/images/icone${num}.png`} alt="" fill />
                 </motion.div>
               ))}
             </div>
@@ -511,18 +504,18 @@ function ValuesSection() {
         <div className="grid md:grid-cols-3 gap-8">
           {[
             {
-              title: 'Sustentabilidade',
-              desc: 'Práticas que respeitam o meio ambiente e protegem as abelhas',
+              title: "Sustentabilidade",
+              desc: "Práticas que respeitam o meio ambiente e protegem as abelhas",
               icon: 2,
             },
             {
-              title: 'Qualidade',
-              desc: 'Produtos premium, 100% naturais e cuidadosamente produzidos',
+              title: "Qualidade",
+              desc: "Produtos premium, 100% naturais e cuidadosamente produzidos",
               icon: 4,
             },
             {
-              title: 'Transparência',
-              desc: 'Rastreabilidade completa do apiário até sua mesa',
+              title: "Transparência",
+              desc: "Rastreabilidade completa do apiário até sua mesa",
               icon: 6,
             },
           ].map((value, idx) => (
@@ -534,24 +527,18 @@ function ValuesSection() {
               className="relative group"
             >
               <div className="h-full p-10 rounded-3xl bg-white border border-clr1/10 hover:border-clr3/50 transition-all duration-500 hover:shadow-2xl">
-                <motion.div
-                  whileHover={{ rotate: 360, scale: 1.1 }}
-                  transition={{ duration: 0.6 }}
-                  className="mb-6"
-                >
-                  <Image
-                    src={`/images/icone${value.icon}.png`}
-                    alt={value.title}
-                    width={80}
-                    height={80}
-                  />
-                </motion.div>
+                <Image
+                  src={`/images/icone${value.icon}.png`}
+                  alt={value.title}
+                  width={4480}
+                  height={4480}
+                  className="w-56 h-56 object-contain"
+                />
+
                 <h3 className="text-2xl font-bold text-clr1 mb-4">
                   {value.title}
                 </h3>
-                <p className="text-clr1/60 leading-relaxed">
-                  {value.desc}
-                </p>
+                <p className="text-clr1/60 leading-relaxed">{value.desc}</p>
               </div>
             </motion.div>
           ))}
@@ -566,10 +553,13 @@ function CTASection() {
   const isInView = useInView(ref, { once: true });
 
   return (
-    <section ref={ref} className="py-32 bg-linear-to-br from-clr1 to-clr1/90 relative overflow-hidden">
+    <section
+      ref={ref}
+      className="py-32 bg-linear-to-br from-clr1 to-clr1/90 relative overflow-hidden"
+    >
       <motion.div
         animate={{ scale: [1, 1.2, 1], rotate: [0, 180, 360] }}
-        transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
+        transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
         className="absolute top-0 right-0 w-96 h-96 bg-clr4/10 rounded-full blur-3xl"
       />
 
@@ -583,14 +573,19 @@ function CTASection() {
             Pronto Para Experimentar?
           </span>
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-clr2 mb-8 leading-tight">
-            Descubra o Sabor<br />Autêntico do Mel
+            Descubra o Sabor
+            <br />
+            Autêntico do Mel
           </h2>
           <p className="text-xl text-clr2/80 mb-12 max-w-2xl mx-auto font-light">
             Entre em contato e conheça nossos produtos artesanais
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            >
               <Link
                 href="/produtos"
                 className="inline-flex items-center gap-3 bg-clr4 text-clr1 px-10 py-5 rounded-full font-semibold text-lg hover:bg-clr2 transition-all duration-300 shadow-2xl group"
@@ -599,7 +594,10 @@ function CTASection() {
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </motion.div>
-            <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            >
               <Link
                 href="/contato"
                 className="inline-flex items-center gap-3 bg-transparent border-2 border-clr2 text-clr2 px-10 py-5 rounded-full font-semibold text-lg hover:bg-clr2 hover:text-clr1 transition-all duration-300"
@@ -623,12 +621,12 @@ function Footer({ navItems }: { navItems: { name: string; href: string }[] }) {
             <Image
               src="/images/logo2.png"
               alt="Apiário Mantikeira"
-              width={220}
-              height={80}
-              className="h-20 w-auto object-contain mb-8"
+              width={440}
+              height={40}
+              className="h-40 w-auto object-contain mb-8" // h-16 = 64px, h-20 = 80px, h-24 = 96px
             />
             <p className="text-clr2/70 mb-6 leading-relaxed text-lg font-light max-w-md">
-              Apicultora e meliponicultora apaixonada pelo mundo das abelhas. 
+              Apicultora e meliponicultora apaixonada pelo mundo das abelhas.
               Mel artesanal e orgânico com manejo consciente.
             </p>
             <motion.a
@@ -688,8 +686,10 @@ function Footer({ navItems }: { navItems: { name: string; href: string }[] }) {
               <li className="flex items-start gap-4">
                 <MapPin className="w-6 h-6 shrink-0 text-clr4 mt-1" />
                 <span className="text-clr2/70 text-lg leading-relaxed">
-                  Rua Professor Anísio Novaes, 101<br />
-                  Pedreira, Guaratinguetá - SP<br />
+                  Rua Professor Anísio Novaes, 101
+                  <br />
+                  Pedreira, Guaratinguetá - SP
+                  <br />
                   CEP 12503-025
                 </span>
               </li>
@@ -698,27 +698,11 @@ function Footer({ navItems }: { navItems: { name: string; href: string }[] }) {
         </div>
 
         <div className="pt-8 border-t border-clr2/20">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex flex-col md:flex-row justify-center items-center gap-6">
             <p className="text-clr2/50 text-sm">
-              © {new Date().getFullYear()} Apiário Mantikeira. Todos os direitos reservados.
+              © {new Date().getFullYear()} Apiário Mantikeira. Todos os direitos
+              reservados.
             </p>
-            <div className="flex items-center gap-6">
-              {[1, 3, 5].map((num) => (
-                <motion.div
-                  key={num}
-                  whileHover={{ rotate: 360, scale: 1.2 }}
-                  transition={{ duration: 0.6 }}
-                >
-                  <Image
-                    src={`/images/icone${num}.png`}
-                    alt=""
-                    width={32}
-                    height={32}
-                    className="w-8 h-8 object-contain opacity-20"
-                  />
-                </motion.div>
-              ))}
-            </div>
           </div>
         </div>
       </div>
