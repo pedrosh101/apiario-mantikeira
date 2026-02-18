@@ -108,7 +108,7 @@ export default function HomePage() {
                   alt="Apiário Mantikeira"
                   width={400}
                   height={70}
-                  className="h-60 w-auto object-contain"
+                  className="lg:h-60 h-20 w-auto object-contain"
                   priority
                 />
               </motion.div>
